@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Cell from "../components/Cell";
 import "./style.css";
 
-const Grid = ({ width = 20, height = 20 }) => {
-  const [cells, setCells] = useState([1, 2, 3, 4, 5]);
+const Grid = ({ width = 30, height = 15 }) => {
+  const [cells, setCells] = useState([]);
+  const [startCell, setStartCell] = useState({ x: null, y: null });
 
   useEffect(() => {
     const number = width * height;
@@ -12,16 +14,22 @@ const Grid = ({ width = 20, height = 20 }) => {
     }
     setCells(cellArray);
   }, []);
+
+  useEffect(() => {
+    console.log(startCell);
+  }, [startCell]);
   return (
     <div
       className="grid-container"
       style={{
-        gridTemplateColumns: `repeat(${width}, 4em)`,
-        gridTemplateRows: `repeat(${height}, 4em)`,
+        gridTemplateColumns: `repeat(${width}, 2rem)`,
+        gridTemplateRows: `repeat(${height}, 2rem)`,
       }}
     >
       {cells.map((cell) => {
-        return <div className="cell" key={cell}></div>;
+        const x = cell % width;
+        const y = (cell - x) / width;
+        return <Cell key={cell} x={x} y={y} setStartCell={setStartCell} />;
       })}
     </div>
   );

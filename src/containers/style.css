@@ -9,6 +9,7 @@
   align-content: center;
   flex: 1;
   margin: 1em;
+  height: 80vh;
 }
 
 .cell {
@@ -21,4 +22,8 @@
   justify-content: center;
   align-items: center;
   user-select: none;
+}
+
+.cell.start {
+  background-color: green;
 }
