@@ -1,0 +1,12 @@
+.tool-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-top: 1px solid black;
+}

@@ -27,3 +27,11 @@
 .cell.start {
   background-color: green;
 }
+
+.cell.wall {
+  background-color: black;
+}
+
+.cell.end {
+  background-color: red;
+}

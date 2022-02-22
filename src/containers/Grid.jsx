@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, Children } from "react";
 import Cell from "../components/Cell";
-import "./style.css";
+import "./styles/gridStyle.css";
+import NavigationToolBar from "../contexts/navigaionToolBar";
 
 const Grid = ({ width = 30, height = 15 }) => {
+  const NavigationToolBarContext = useContext(NavigationToolBar);
+
   const [cells, setCells] = useState([]);
-  const [startCell, setStartCell] = useState({ x: null, y: null });
+  const [clickedCell, setClickedCell] = useState({ x: null, y: null });
 
   useEffect(() => {
     const number = width * height;
@@ -16,8 +19,9 @@ const Grid = ({ width = 30, height = 15 }) => {
   }, []);
 
   useEffect(() => {
-    console.log(startCell);
-  }, [startCell]);
+    NavigationToolBarContext.handleGridClick(clickedCell);
+    console.log(clickedCell);
+  }, [clickedCell]);
   return (
     <div
       className="grid-container"
@@ -29,7 +33,17 @@ const Grid = ({ width = 30, height = 15 }) => {
       {cells.map((cell) => {
         const x = cell % width;
         const y = (cell - x) / width;
-        return <Cell key={cell} x={x} y={y} setStartCell={setStartCell} />;
+        return (
+          <Cell
+            key={cell}
+            x={x}
+            y={y}
+            setClickedCell={setClickedCell}
+            clickedCell={clickedCell}
+            startCell={NavigationToolBarContext.startCell}
+            endCell={NavigationToolBarContext.endCell}
+          />
+        );
       })}
     </div>
   );
