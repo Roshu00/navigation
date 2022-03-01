@@ -7,12 +7,7 @@ export const NavigationToolBarContext = ({ children }) => {
   const [startCell, setStartCell] = useState({ x: null, y: null });
   const [endCell, setEndCell] = useState({ x: null, y: null });
   const [wallCells, setWallCells] = useState([]);
-  useEffect(() => {
-    console.log(selectedTool);
-    console.log("startCell", startCell);
-    console.log("endCell", endCell);
-    console.log("wallCell", wallCells);
-  }, [selectedTool, startCell, endCell, wallCells]);
+  useEffect(() => {}, [selectedTool, startCell, endCell, wallCells]);
 
   const handleGridClick = (cell) => {
     switch (selectedTool) {
@@ -36,6 +31,7 @@ export const NavigationToolBarContext = ({ children }) => {
         startCell,
         endCell,
         handleGridClick,
+        wallCells,
       }}
     >
       {children}

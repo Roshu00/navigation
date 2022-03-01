@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext, Children } from "react";
 import Cell from "../components/Cell";
 import "./styles/gridStyle.css";
 import NavigationToolBar from "../contexts/navigaionToolBar";
+import { navigationF } from "../utils/navigationFunction";
 
-const Grid = ({ width = 30, height = 15 }) => {
+const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
   const NavigationToolBarContext = useContext(NavigationToolBar);
 
   const [cells, setCells] = useState([]);
@@ -19,8 +20,20 @@ const Grid = ({ width = 30, height = 15 }) => {
   }, []);
 
   useEffect(() => {
+    if (navigating) {
+      navigationF(
+        NavigationToolBarContext.startCell,
+        NavigationToolBarContext.endCell,
+        height,
+        width,
+        NavigationToolBarContext.wallCells
+      );
+      setNavigating(false);
+    }
+  }, [navigating]);
+
+  useEffect(() => {
     NavigationToolBarContext.handleGridClick(clickedCell);
-    console.log(clickedCell);
   }, [clickedCell]);
   return (
     <div
@@ -42,6 +55,7 @@ const Grid = ({ width = 30, height = 15 }) => {
             clickedCell={clickedCell}
             startCell={NavigationToolBarContext.startCell}
             endCell={NavigationToolBarContext.endCell}
+            selectedTool={NavigationToolBarContext.selectedTool}
           />
         );
       })}

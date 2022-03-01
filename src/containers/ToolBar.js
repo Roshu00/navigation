@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import "./styles/toolBarStyle.css";
 import NavigationToolBar from "../contexts/navigaionToolBar";
 
-const ToolBar = () => {
+const ToolBar = ({ setNavigating }) => {
+  const startNavigation = () => {
+    setNavigating(true);
+  };
   const NavigationToolBarContext = useContext(NavigationToolBar);
   return (
     <div className="tool-bar">
@@ -27,6 +30,7 @@ const ToolBar = () => {
       >
         Wall
       </button>
+      <button onClick={() => startNavigation()}>Start navigation</button>
     </div>
   );
 };
