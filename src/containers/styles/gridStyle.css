@@ -35,3 +35,7 @@
 .cell.end {
   background-color: blue;
 }
+
+.cell.selected {
+  background-color: grey;
+}

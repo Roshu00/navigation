@@ -1,3 +1,7 @@
+const fCostCalculate = (x, y, endCell, startCell) => {
+  const gCost = "";
+};
+
 export const navigationF = (
   startCell,
   endCell,
@@ -7,10 +11,60 @@ export const navigationF = (
 ) => {
   const selectedCells = [];
   if (startCell.x - 1 > 0) {
-    selectedCells.push(startCell?.x - 1);
-  } else if (startCell.x + 1 < borderX) {
-    selectedCells.push(startCell?.x + 1);
+    const y = startCell.y;
+    const x = startCell.x - 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
   }
-  console.log(selectedCells);
+  if (startCell.x + 1 < borderX) {
+    const y = startCell.y;
+    const x = startCell.x + 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y - 1 > 0) {
+    const y = startCell.y - 1;
+    const x = startCell.x;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y + 1 < borderY) {
+    const y = startCell.y + 1;
+    const x = startCell.x;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y - 1 > 0 && startCell.x - 1 > 0) {
+    const y = startCell.y - 1;
+    const x = startCell.x - 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y - 1 > 0 && startCell.x + 1 < borderX) {
+    const y = startCell.y - 1;
+    const x = startCell.x + 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y + 1 < borderY && startCell.x - 1 > 0) {
+    const y = startCell.y + 1;
+    const x = startCell.x - 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  if (startCell.y + 1 < borderY && startCell.x + 1 < borderX) {
+    const y = startCell.y + 1;
+    const x = startCell.x + 1;
+    if (!wallCells.some((cell) => cell.x === x && cell.y === y)) {
+      selectedCells.push({ x, y });
+    }
+  }
+  return selectedCells;
 };
-// Make this function select all sells surounding best cell

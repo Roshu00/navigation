@@ -10,6 +10,8 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
   const [cells, setCells] = useState([]);
   const [clickedCell, setClickedCell] = useState({ x: null, y: null });
 
+  const [selectedCells, setSelectedCells] = useState([]);
+
   useEffect(() => {
     const number = width * height;
     const cellArray = [];
@@ -21,13 +23,15 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
 
   useEffect(() => {
     if (navigating) {
-      navigationF(
+      const cells = navigationF(
         NavigationToolBarContext.startCell,
         NavigationToolBarContext.endCell,
         height,
         width,
         NavigationToolBarContext.wallCells
       );
+      setSelectedCells(cells);
+      console.log(selectedCells);
       setNavigating(false);
     }
   }, [navigating]);
@@ -56,6 +60,7 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
             startCell={NavigationToolBarContext.startCell}
             endCell={NavigationToolBarContext.endCell}
             selectedTool={NavigationToolBarContext.selectedTool}
+            selectedCells={selectedCells}
           />
         );
       })}
