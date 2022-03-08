@@ -17,7 +17,7 @@ const Cell = ({
   const selectedStyle = selected ? "selected" : "";
 
   useEffect(() => {
-    if (selectedCells.some((cell) => cell.x === x && cell.y === y)) {
+    if (selectedCells?.some((cell) => cell.x === x && cell.y === y)) {
       setSelected(true);
     } else {
       setSelected(false);
