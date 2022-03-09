@@ -30,7 +30,7 @@ export const navigationF = (
   wallCells
 ) => {
   const selectedCells = [];
-  if (startCell.x - 1 > 0) {
+  if (startCell.x - 1 >= 0) {
     const y = startCell.y;
     const x = startCell.x - 1;
     if (endCell.x === x && endCell.y === y) {
@@ -42,7 +42,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.x + 1 < borderX) {
+  if (startCell.x + 1 <= borderX) {
     const y = startCell.y;
     const x = startCell.x + 1;
     if (endCell.x === x && endCell.y === y) {
@@ -54,7 +54,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y - 1 > 0) {
+  if (startCell.y - 1 >= 0) {
     const y = startCell.y - 1;
     const x = startCell.x;
     if (endCell.x === x && endCell.y === y) {
@@ -66,7 +66,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y + 1 < borderY) {
+  if (startCell.y + 1 <= borderY) {
     const y = startCell.y + 1;
     const x = startCell.x;
     if (endCell.x === x && endCell.y === y) {
@@ -78,7 +78,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y - 1 > 0 && startCell.x - 1 > 0) {
+  if (startCell.y - 1 >= 0 && startCell.x - 1 >= 0) {
     const y = startCell.y - 1;
     const x = startCell.x - 1;
     if (endCell.x === x && endCell.y === y) {
@@ -90,7 +90,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y - 1 > 0 && startCell.x + 1 < borderX) {
+  if (startCell.y - 1 >= 0 && startCell.x + 1 <= borderX) {
     const y = startCell.y - 1;
     const x = startCell.x + 1;
     if (endCell.x === x && endCell.y === y) {
@@ -102,7 +102,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y + 1 < borderY && startCell.x - 1 > 0) {
+  if (startCell.y + 1 <= borderY && startCell.x - 1 >= 0) {
     const y = startCell.y + 1;
     const x = startCell.x - 1;
     if (endCell.x === x && endCell.y === y) {
@@ -114,7 +114,7 @@ export const navigationF = (
       selectedCells.push({ x, y, cost });
     }
   }
-  if (startCell.y + 1 < borderY && startCell.x + 1 < borderX) {
+  if (startCell.y + 1 <= borderY && startCell.x + 1 <= borderX) {
     const y = startCell.y + 1;
     const x = startCell.x + 1;
     if (endCell.x === x && endCell.y === y) {

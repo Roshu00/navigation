@@ -26,8 +26,8 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
       const cells = navigationF(
         NavigationToolBarContext.startCell,
         NavigationToolBarContext.endCell,
-        height,
         width,
+        height,
         NavigationToolBarContext.wallCells
       );
       setSelectedCells(cells);
