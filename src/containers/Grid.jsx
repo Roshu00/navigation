@@ -11,6 +11,7 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
   const [clickedCell, setClickedCell] = useState({ x: null, y: null });
 
   const [selectedCells, setSelectedCells] = useState([]);
+  const [bestCell, setBestCell] = useState(null);
 
   useEffect(() => {
     const number = width * height;
@@ -28,13 +29,30 @@ const Grid = ({ width = 30, height = 15, setNavigating, navigating }) => {
         NavigationToolBarContext.endCell,
         width,
         height,
-        NavigationToolBarContext.wallCells
+        NavigationToolBarContext.wallCells,
+        setBestCell,
+        setNavigating
+      );
+      setSelectedCells(cells);
+    }
+  }, [navigating]);
+
+  useEffect(() => {
+    console.log("USE Effect best cell", bestCell);
+    if (navigating) {
+      const cells = navigationF(
+        bestCell,
+        NavigationToolBarContext.endCell,
+        width,
+        height,
+        NavigationToolBarContext.wallCells,
+        setBestCell,
+        setNavigating
       );
       setSelectedCells(cells);
       console.log(selectedCells);
-      setNavigating(false);
     }
-  }, [navigating]);
+  }, [bestCell]);
 
   useEffect(() => {
     NavigationToolBarContext.handleGridClick(clickedCell);
